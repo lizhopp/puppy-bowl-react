@@ -1,12 +1,12 @@
 import SinglePlayer from "./SinglePlayer";
-import { useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import { getPlayers } from "../api";
 import CreatePlayerForm from "./CreatePlayerForm";
 
 export default function AllPlayers() {
   const [players, setPlayers] = useState([]);
   const [searchParam, setSearchParam] = useState("");
-  
+
   async function getData() {
     const playersData = await getPlayers();
     setPlayers(playersData);
@@ -17,7 +17,7 @@ export default function AllPlayers() {
         player.name.toLowerCase().startsWith(searchParam)
       )
     : players;
-  
+
   useEffect(() => {
     getData();
   }, []);
@@ -25,7 +25,7 @@ export default function AllPlayers() {
   return (
     <div>
       <h1>Add a Player</h1>
-      <CreatePlayerForm getData={getData}/>
+      <CreatePlayerForm getData={getData} />
       <h1>Players</h1>
       <div>
         <label>
@@ -38,7 +38,9 @@ export default function AllPlayers() {
         </label>
       </div>
       {playersToDisplay.map((player) => {
-        return <SinglePlayer key={player.id} player={player} getData={getData} />;
+        return (
+          <SinglePlayer key={player.id} player={player} getData={getData} />
+        );
       })}
     </div>
   );

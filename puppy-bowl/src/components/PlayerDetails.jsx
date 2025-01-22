@@ -11,7 +11,6 @@ export default function PlayerDetails() {
     async function getSinglePlayer(id) {
       setPlayerDetails(await getPlayerDetails(id));
     }
-    console.log("player details");
     getSinglePlayer(id);
   }, []);
 
